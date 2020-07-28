@@ -6,13 +6,14 @@ const App = () => {
   const todoItems = [
     { title: "Học JS", isComplete: true },
     { title: "Học Node.js" },
-    { title: "Học React" },
+    { title: "Học React", isComplete: true },
   ];
   return (
     <div className="App">
-      {todoItems.map((item, index) => (
+      {todoItems.length > 0 && todoItems.map((item, index) => (
         <TodoItem key={index} item={item} />
       ))}
+      {todoItems.length === 0 && 'Nothing here!!!'}
     </div>
   );
 };
