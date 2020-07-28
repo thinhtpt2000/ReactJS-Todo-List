@@ -1,12 +1,16 @@
 import React from "react";
 import classnames from "classnames";
 import "./TodoItem.css";
+import checkImg from "../img/check.svg";
+import checkCompleteImg from "../img/check-complete.svg";
 
 const TodoItem = (props) => {
   const { item, onItemClick } = props;
 
-  const handleClick = () => {
-    onItemClick(item.key);
+  let url = checkImg;
+
+  if (item.isComplete) {
+    url = checkCompleteImg;
   }
 
   const className = classnames("TodoItem", {
@@ -14,7 +18,8 @@ const TodoItem = (props) => {
   });
 
   return (
-    <div onClick={handleClick} className={className}>
+    <div className={className}>
+      <img src={url} width="32" onClick={onItemClick} />
       <p>{item.title}</p>
     </div>
   );
