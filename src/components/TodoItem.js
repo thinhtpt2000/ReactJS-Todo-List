@@ -3,18 +3,18 @@ import classnames from "classnames";
 import "./TodoItem.css";
 
 const TodoItem = (props) => {
-  const { item } = props;
-  /*
-        let className = 'TodoItem';
-        if (item.isComplete) {
-            className += ' TodoItem-complete';
-        }
-        */
-  let className = classnames("TodoItem", {
+  const { item, onItemClick } = props;
+
+  const handleClick = () => {
+    onItemClick(item.key);
+  }
+
+  const className = classnames("TodoItem", {
     "TodoItem-complete": item.isComplete,
   });
+
   return (
-    <div className={className}>
+    <div onClick={handleClick} className={className}>
       <p>{item.title}</p>
     </div>
   );
