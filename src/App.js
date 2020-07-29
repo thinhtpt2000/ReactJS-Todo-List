@@ -12,12 +12,7 @@ const App = () => {
 
   const [newItem, setNewItem] = useState("");
 
-  const onItemClick = (item) => {
-    // setTodoItems((prevItems) => {
-    //   return prevItems.map((item, index) =>
-    //     index === key ? { ...item, isComplete: !item.isComplete } : item
-    //   );
-    // });
+  const onCheckClick = (item) => {
     return (event) => {
       const isComplete = item.isComplete;
       const index = todoItems.indexOf(item);
@@ -32,7 +27,7 @@ const App = () => {
     };
   };
 
-  const onKeyUp = (event) => {
+  const onInputKeyUp = (event) => {
     const { keyCode } = event;
     let text = event.target.value;
     if (keyCode === 13) {
@@ -48,28 +43,38 @@ const App = () => {
     }
   };
 
-  const onChange = (event) => {
+  const onInputChange = (event) => {
     const text = event.target.value;
     setNewItem(text);
-  }
+  };
+
+  const onRemoveClick = (item) => {
+    return (event) => {
+      const index = todoItems.indexOf(item);
+      setTodoItems([
+        ...todoItems.slice(0, index),
+        ...todoItems.slice(index + 1),
+      ]);
+    };
+  };
 
   return (
     <div className="App">
       <div className="Header">
-        <img src={tick} width="32" />
+        <img src={tick} width="32" alt="Check all"/>
         <input
           type="text"
           placeholder="Add a new item"
           value={newItem}
-          onChange={onChange}
-          onKeyUp={onKeyUp}
+          onChange={onInputChange}
+          onKeyUp={onInputKeyUp}
         />
       </div>
       {todoItems.length > 0 &&
         todoItems.map((item, index) => (
-          <TodoItem key={index} item={item} onItemClick={onItemClick(item)} />
+          <TodoItem key={index} item={item} onCheckClick={onCheckClick(item)} onRemoveClick={onRemoveClick(item)} />
         ))}
-      {todoItems.length === 0 && "Nothing here!!!"}
+      {todoItems.length === 0 && <p className="EmptyMessage">Nothing here !</p>}
     </div>
   );
 };
