@@ -25,7 +25,7 @@ const TodoItem = (props) => {
       <img
         className="RemoveImg"
         src={removeImg}
-        width="24"
+        width="18"
         onClick={onRemoveClick}
         alt="Remove item"
       />

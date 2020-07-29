@@ -6,6 +6,7 @@
     border-bottom: 1px solid #bebebe;
     display: flex;
     align-items: center;
+    word-break: break-all;
 }
 
 .TodoItem:last-child {

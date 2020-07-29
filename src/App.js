@@ -12,6 +12,8 @@ const App = () => {
 
   const [newItem, setNewItem] = useState("");
 
+  const [allStatus, setAllStatus] = useState(true);
+
   const onCheckClick = (item) => {
     return (event) => {
       const isComplete = item.isComplete;
@@ -59,9 +61,10 @@ const App = () => {
   };
 
   const onCheckAllClick = () => {
+    setAllStatus(!allStatus);
     setTodoItems(
       todoItems.map((item) => {
-        return { ...item, isComplete: true };
+        return { ...item, isComplete: allStatus };
       })
     );
   };
