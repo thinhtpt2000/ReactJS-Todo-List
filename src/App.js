@@ -58,10 +58,18 @@ const App = () => {
     };
   };
 
+  const onCheckAllClick = () => {
+    setTodoItems(
+      todoItems.map((item) => {
+        return { ...item, isComplete: true };
+      })
+    );
+  };
+
   return (
     <div className="App">
       <div className="Header">
-        <img src={tick} width="32" alt="Check all"/>
+        <img src={tick} width="32" alt="Check all" onClick={onCheckAllClick} />
         <input
           type="text"
           placeholder="Add a new item"
@@ -72,7 +80,12 @@ const App = () => {
       </div>
       {todoItems.length > 0 &&
         todoItems.map((item, index) => (
-          <TodoItem key={index} item={item} onCheckClick={onCheckClick(item)} onRemoveClick={onRemoveClick(item)} />
+          <TodoItem
+            key={index}
+            item={item}
+            onCheckClick={onCheckClick(item)}
+            onRemoveClick={onRemoveClick(item)}
+          />
         ))}
       {todoItems.length === 0 && <p className="EmptyMessage">Nothing here !</p>}
     </div>
