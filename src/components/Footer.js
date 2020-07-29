@@ -3,7 +3,13 @@ import classNames from "classnames";
 import "./Footer.css";
 
 const Footer = (props) => {
-  const { currentState, counter, onStateClick } = props;
+  const {
+    currentState,
+    counter,
+    counterComp,
+    onStateClick,
+    onClearCompleteClick,
+  } = props;
 
   return (
     <div className="Footer">
@@ -36,6 +42,12 @@ const Footer = (props) => {
           Complete
         </div>
       </div>
+      <p
+        className={classNames("ClearCompleteBtn", { hidden: counterComp <= 0 })}
+        onClick={onClearCompleteClick}
+      >
+        clear complete
+      </p>
     </div>
   );
 };

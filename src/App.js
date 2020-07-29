@@ -24,6 +24,8 @@ const App = () => {
 
   const [counter, setCounter] = useState(0);
 
+  const [counterComp, setCounterComp] = useState(0);
+
   useEffect(() => {
     // Change current item list
     switch (currentState) {
@@ -42,6 +44,9 @@ const App = () => {
     setCounter(incompleteItems.length);
 
     localStorage.setItem("todos", JSON.stringify(todoItems));
+
+    const completeItems = todoItems.filter((item) => item.isComplete);
+    setCounterComp(completeItems.length);
   }, [currentState, todoItems, counter]);
 
   const onCheckClick = (item) => {
@@ -113,6 +118,10 @@ const App = () => {
     setCurrentState(newState);
   };
 
+  const onClearCompleteClick = () => {
+    setTodoItems(todoItems.filter((item) => !item.isComplete));
+  };
+
   return (
     <div className="App">
       <div className="Title">My Todos App</div>
@@ -142,6 +151,8 @@ const App = () => {
         currentState={currentState}
         onStateClick={onStateClick}
         counter={counter}
+        counterComp={counterComp}
+        onClearCompleteClick={onClearCompleteClick}
       />
     </div>
   );
