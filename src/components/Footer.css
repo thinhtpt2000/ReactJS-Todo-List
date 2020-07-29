@@ -1,0 +1,15 @@
+.Footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.FooterItem {
+    margin: 5px 10px;
+    font-size: 18px;
+    padding: 2px 5px;
+}
+
+.FooterItem.active {
+    border: 1px solid #bebebe;
+}

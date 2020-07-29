@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import TodoItem from "./components/TodoItem";
+import Footer from "./components/Footer";
 import tick from "./img/tick.svg";
 
 const App = () => {
@@ -13,6 +14,25 @@ const App = () => {
   const [newItem, setNewItem] = useState("");
 
   const [allStatus, setAllStatus] = useState(true);
+
+  const [currentState, setCurrentState] = useState("All");
+
+  const [currentItems, setCurrentItems] = useState(todoItems);
+
+  useEffect(() => {
+    // Change current item list
+    switch (currentState) {
+      case "Active":
+        setCurrentItems(todoItems.filter((item) => !item.isComplete));
+        break;
+      case "Complete":
+        setCurrentItems(todoItems.filter((item) => item.isComplete));
+        break;
+      default:
+        setCurrentItems(todoItems);
+        break;
+    }
+  }, [currentState, todoItems]);
 
   const onCheckClick = (item) => {
     return (event) => {
@@ -61,12 +81,26 @@ const App = () => {
   };
 
   const onCheckAllClick = () => {
+    // switch (currentState) {
+    //   case "Active":
+    //     setAllStatus(true);
+    //     break;
+    //   case "Complete":
+    //     setAllStatus(false);
+    //     break;
+    //   default:
+    //     setAllStatus(!allStatus);
+    // }
     setAllStatus(!allStatus);
     setTodoItems(
       todoItems.map((item) => {
         return { ...item, isComplete: allStatus };
       })
     );
+  };
+
+  const onStateClick = (newState) => {
+    setCurrentState(newState);
   };
 
   return (
@@ -81,8 +115,8 @@ const App = () => {
           onKeyUp={onInputKeyUp}
         />
       </div>
-      {todoItems.length > 0 &&
-        todoItems.map((item, index) => (
+      {currentItems.length > 0 &&
+        currentItems.map((item, index) => (
           <TodoItem
             key={index}
             item={item}
@@ -90,7 +124,10 @@ const App = () => {
             onRemoveClick={onRemoveClick(item)}
           />
         ))}
-      {todoItems.length === 0 && <p className="EmptyMessage">Nothing here !</p>}
+      {currentItems.length === 0 && (
+        <p className="EmptyMessage">Nothing here !</p>
+      )}
+      <Footer currentState={currentState} onStateClick={onStateClick} />
     </div>
   );
 };
