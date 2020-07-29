@@ -111,6 +111,7 @@ const App = () => {
 
   return (
     <div className="App">
+      <div className="Title">My Todos App</div>
       <div className="Header">
         <img src={tick} width="32" alt="Check all" onClick={onCheckAllClick} />
         <input
