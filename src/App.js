@@ -5,11 +5,14 @@ import Footer from "./components/Footer";
 import tick from "./img/tick.svg";
 
 const App = () => {
-  const [todoItems, setTodoItems] = useState([
-    { title: "Học JS", isComplete: true },
-    { title: "Học Node.js", isComplete: false },
-    { title: "Học React", isComplete: true },
-  ]);
+  // const [todoItems, setTodoItems] = useState([
+  //   { title: "Học JS", isComplete: true },
+  //   { title: "Học Node.js", isComplete: false },
+  //   { title: "Học React", isComplete: true },
+  // ]);
+  const [todoItems, setTodoItems] = useState(
+    JSON.parse(localStorage.getItem("todos")) || []
+  );
 
   const [newItem, setNewItem] = useState("");
 
@@ -35,9 +38,10 @@ const App = () => {
         break;
     }
 
-    const incompleteItems = todoItems.filter(item => !item.isComplete);
+    const incompleteItems = todoItems.filter((item) => !item.isComplete);
     setCounter(incompleteItems.length);
-    
+
+    localStorage.setItem("todos", JSON.stringify(todoItems));
   }, [currentState, todoItems, counter]);
 
   const onCheckClick = (item) => {
@@ -134,7 +138,11 @@ const App = () => {
       {currentItems.length === 0 && (
         <p className="EmptyMessage">Nothing here !</p>
       )}
-      <Footer currentState={currentState} onStateClick={onStateClick} counter={counter} />
+      <Footer
+        currentState={currentState}
+        onStateClick={onStateClick}
+        counter={counter}
+      />
     </div>
   );
 };
