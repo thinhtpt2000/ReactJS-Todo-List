@@ -47,6 +47,7 @@ const App = () => {
 
     const completeItems = todoItems.filter((item) => item.isComplete);
     setCounterComp(completeItems.length);
+
   }, [currentState, todoItems, counter]);
 
   const onCheckClick = (item) => {
@@ -122,6 +123,28 @@ const App = () => {
     setTodoItems(todoItems.filter((item) => !item.isComplete));
   };
 
+  const onKeyUpItem = (item) => {
+    return (event) => {
+      const { keyCode } = event;
+      let text = event.target.value;
+      if (keyCode === 13) {
+        if (!text) {
+          return;
+        }
+        text = text.trim();
+        if (!text) {
+          return;
+        }
+        const index = todoItems.indexOf(item);
+        setTodoItems([
+          ...todoItems.slice(0, index),
+          { ...item, title: text },
+          ...todoItems.slice(index + 1),
+        ]);
+      }
+    };
+  };
+
   return (
     <div className="App">
       <div className="Title">My Todos App</div>
@@ -142,6 +165,7 @@ const App = () => {
             item={item}
             onCheckClick={onCheckClick(item)}
             onRemoveClick={onRemoveClick(item)}
+            onKeyUpItem={onKeyUpItem(item)}
           />
         ))}
       {currentItems.length === 0 && (

@@ -1,33 +1,49 @@
 .TodoItem {
-    /* font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  /* font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
     font-weight: 300;
     font-size: 24px; */
-    padding: 10px 5px;
-    border-bottom: 1px solid #bebebe;
-    display: flex;
-    align-items: center;
-    word-break: break-all;
+  padding: 10px 5px;
+  border-bottom: 1px solid #bebebe;
+  display: flex;
+  align-items: center;
+  word-break: break-all;
 }
 
 .TodoItem:last-child {
-    border: none;
+  border: none;
 }
 
 .TodoItem > p {
-    margin: 0 0 0 15px;
-    flex: 1;
+  margin: 0 0 0 15px;
+  flex: 1;
+}
+
+.TodoItem > input {
+  margin: 0 0 0 15px;
+  flex: 1;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 24px;
+  padding-left: 10px;
+  width: 100%;
+  border: none;
+  background-color: #fff;
+}
+
+.TodoItem > input:focus {
+  outline: none;
 }
 
 .TodoItem-complete > p {
-    text-decoration: line-through;
-    opacity: .3;
+  text-decoration: line-through;
+  opacity: 0.3;
 }
 
 .TodoItem .RemoveImg {
-    opacity: .3;
-    cursor: pointer;
+  opacity: 0.3;
+  cursor: pointer;
 }
 
 .TodoItem .RemoveImg:hover {
-    opacity: 1;
+  opacity: 1;
 }
