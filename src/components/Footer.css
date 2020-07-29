@@ -1,12 +1,23 @@
 .Footer {
     display: flex;
+    
+}
+
+.Footer > p {
+    font-size: 15px;
+    margin-left: 5px;
+}
+
+.FooterList {
+    flex: 1;
+    display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .FooterItem {
     margin: 5px 10px;
-    font-size: 18px;
+    font-size: 15px;
     padding: 2px 5px;
 }
 

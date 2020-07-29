@@ -19,6 +19,8 @@ const App = () => {
 
   const [currentItems, setCurrentItems] = useState(todoItems);
 
+  const [counter, setCounter] = useState(0);
+
   useEffect(() => {
     // Change current item list
     switch (currentState) {
@@ -32,7 +34,11 @@ const App = () => {
         setCurrentItems(todoItems);
         break;
     }
-  }, [currentState, todoItems]);
+
+    const incompleteItems = todoItems.filter(item => !item.isComplete);
+    setCounter(incompleteItems.length);
+    
+  }, [currentState, todoItems, counter]);
 
   const onCheckClick = (item) => {
     return (event) => {
@@ -127,7 +133,7 @@ const App = () => {
       {currentItems.length === 0 && (
         <p className="EmptyMessage">Nothing here !</p>
       )}
-      <Footer currentState={currentState} onStateClick={onStateClick} />
+      <Footer currentState={currentState} onStateClick={onStateClick} counter={counter} />
     </div>
   );
 };
