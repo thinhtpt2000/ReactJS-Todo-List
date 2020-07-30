@@ -20,13 +20,15 @@ const App = () => {
 
   const [currentState, setCurrentState] = useState("All");
 
-  const [currentItems, setCurrentItems] = useState(todoItems);
+  const [currentItems, setCurrentItems] = useState([]);
 
   const [counter, setCounter] = useState(0);
 
   const [counterComp, setCounterComp] = useState(0);
 
   useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todoItems));
+
     // Change current item list
     switch (currentState) {
       case "Active":
@@ -40,10 +42,13 @@ const App = () => {
         break;
     }
 
+    console.log("current: ");
+    console.log(currentItems);
+    console.log("all: ");
+    console.log(todoItems);
+
     const incompleteItems = todoItems.filter((item) => !item.isComplete);
     setCounter(incompleteItems.length);
-
-    localStorage.setItem("todos", JSON.stringify(todoItems));
 
     const completeItems = todoItems.filter((item) => item.isComplete);
     setCounterComp(completeItems.length);
@@ -75,7 +80,8 @@ const App = () => {
       if (!text) {
         return;
       }
-      setTodoItems([{ title: text, isComplete: false }, ...todoItems]);
+      setTodoItems([...todoItems, { title: text, isComplete: false }]);
+      // setTodoItems([{ title: text, isComplete: false }, ...todoItems]);
       setNewItem("");
     }
   };
@@ -96,16 +102,6 @@ const App = () => {
   };
 
   const onCheckAllClick = () => {
-    // switch (currentState) {
-    //   case "Active":
-    //     setAllStatus(true);
-    //     break;
-    //   case "Complete":
-    //     setAllStatus(false);
-    //     break;
-    //   default:
-    //     setAllStatus(!allStatus);
-    // }
     setAllStatus(!allStatus);
     setTodoItems(
       todoItems.map((item) => {
@@ -157,19 +153,21 @@ const App = () => {
           onKeyUp={onInputKeyUp}
         />
       </div>
-      {currentItems.length > 0 &&
-        currentItems.map((item, index) => (
-          <TodoItem
-            key={index}
-            item={item}
-            onCheckClick={onCheckClick(item)}
-            onRemoveClick={onRemoveClick(item)}
-            onKeyUpItem={onKeyUpItem(item)}
-          />
-        ))}
-      {currentItems.length === 0 && (
-        <p className="EmptyMessage">Nothing here !</p>
-      )}
+      <div className="Container">
+        {currentItems.length > 0 &&
+          currentItems.map((item, index) => (
+            <TodoItem
+              key={index}
+              item={item}
+              onCheckClick={onCheckClick(item)}
+              onRemoveClick={onRemoveClick(item)}
+              onKeyUpItem={onKeyUpItem(item)}
+            />
+          ))}
+        {currentItems.length === 0 && (
+          <p className="EmptyMessage">Nothing here !</p>
+        )}
+      </div>
       <Footer
         currentState={currentState}
         onStateClick={onStateClick}
