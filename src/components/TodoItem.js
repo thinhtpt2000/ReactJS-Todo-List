@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import classNames from "classnames";
 import "./TodoItem.css";
 import uncheckImg from "../img/uncheck.svg";
@@ -12,6 +12,10 @@ const TodoItem = (props) => {
   const [itemText, setItemText] = useState(item.title);
 
   const [isEdit, setEdit] = useState(false);
+
+  useEffect(() => {
+    setItemText(item.title);
+  }, [item]);
 
   let urlImg = uncheckImg;
 
@@ -45,9 +49,12 @@ const TodoItem = (props) => {
   };
 
   const handleOnBlurInput = (event) => {
+    let text = event.target.value;
     setEdit(false);
-    setItemText(item.title);
-  }
+    if (!text || !text.trim()) {
+      setItemText(item.title);
+    }
+  };
 
   return (
     <div className={className}>
@@ -75,7 +82,7 @@ const TodoItem = (props) => {
 TodoItem.propTypes = {
   item: PropTypes.shape({
     isComplete: PropTypes.bool.isRequired,
-    title: PropTypes.string.isRequired
+    title: PropTypes.string.isRequired,
   }),
   onCheckClick: PropTypes.func,
   onRemoveClick: PropTypes.func,
