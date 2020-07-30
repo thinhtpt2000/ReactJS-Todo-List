@@ -37,3 +37,13 @@
 .ClearCompleteBtn.hidden {
   visibility: hidden;
 }
+
+@media only screen and (max-width: 550px) {
+  .Footer > p {
+    font-size: 50%;
+  }
+  .FooterItem {
+    margin: 5px 2px;
+    font-size: 50%;
+  }
+}

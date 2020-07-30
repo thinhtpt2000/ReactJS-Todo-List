@@ -51,3 +51,16 @@
 .TodoItem .RemoveImg:hover {
   opacity: 1;
 }
+
+
+@media only screen and (max-width: 550px) {
+  .TodoItem > p,
+  .TodoItem > input {
+    font-size: 90%;
+  }
+
+  .TodoItem img {
+    width: 24px;
+    height: 24px;
+  }
+}
