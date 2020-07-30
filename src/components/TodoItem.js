@@ -4,6 +4,7 @@ import "./TodoItem.css";
 import checkImg from "../img/check.svg";
 import checkCompleteImg from "../img/check-complete.svg";
 import removeImg from "../img/close.svg";
+import PropTypes from "prop-types";
 
 const TodoItem = (props) => {
   const { item, onCheckClick, onRemoveClick, onKeyUpItem } = props;
@@ -63,6 +64,16 @@ const TodoItem = (props) => {
       />
     </div>
   );
+};
+
+TodoItem.propTypes = {
+  item: PropTypes.shape({
+    isComplete: PropTypes.bool.isRequired,
+    title: PropTypes.string.isRequired
+  }),
+  onCheckClick: PropTypes.func,
+  onRemoveClick: PropTypes.func,
+  onKeyUpItem: PropTypes.func,
 };
 
 export default TodoItem;

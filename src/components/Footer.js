@@ -1,6 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import "./Footer.css";
+import PropTypes from "prop-types";
 
 const Footer = (props) => {
   const {
@@ -50,6 +51,14 @@ const Footer = (props) => {
       </p>
     </div>
   );
+};
+
+Footer.propTypes = {
+  currentState: PropTypes.string,
+  counter: PropTypes.number,
+  counterComp: PropTypes.number,
+  onStateClick: PropTypes.func,
+  onClearCompleteClick: PropTypes.func,
 };
 
 export default Footer;
