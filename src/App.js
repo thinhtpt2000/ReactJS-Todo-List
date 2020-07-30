@@ -47,7 +47,6 @@ const App = () => {
 
     const completeItems = todoItems.filter((item) => item.isComplete);
     setCounterComp(completeItems.length);
-
   }, [currentState, todoItems, counter]);
 
   const onCheckClick = (item) => {
