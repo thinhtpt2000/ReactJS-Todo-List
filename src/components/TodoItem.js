@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import classNames from "classnames";
 import "./TodoItem.css";
+import uncheckImg from "../img/uncheck.svg";
 import checkImg from "../img/check.svg";
-import checkCompleteImg from "../img/check-complete.svg";
 import removeImg from "../img/close.svg";
 import PropTypes from "prop-types";
 
@@ -13,10 +13,10 @@ const TodoItem = (props) => {
 
   const [isEdit, setEdit] = useState(false);
 
-  let url = checkImg;
+  let urlImg = uncheckImg;
 
   if (item.isComplete) {
-    url = checkCompleteImg;
+    urlImg = checkImg;
   }
 
   const className = classNames("TodoItem", {
@@ -46,7 +46,7 @@ const TodoItem = (props) => {
 
   return (
     <div className={className}>
-      <img src={url} width="32" onClick={onCheckClick} alt="Check item" />
+      <img src={urlImg} width="32" onClick={onCheckClick} alt="Check item" />
       {isEdit && (
         <input
           value={itemText}
