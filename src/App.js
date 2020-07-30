@@ -137,7 +137,18 @@ const App = () => {
 
   return (
     <div className="App">
-      <div className="Title">My Todos App</div>
+      <div className="Title">
+        <div className="MainTitle">My Todos App</div>
+        <div className="SubTitle">
+          <a
+            href="https://www.facebook.com/thinhtpt.00/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            by ThinhTPT
+          </a>
+        </div>
+      </div>
       <div className="Header">
         <img src={tick} width="32" alt="Check all" onClick={onCheckAllClick} />
         <input
