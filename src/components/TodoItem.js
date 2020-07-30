@@ -49,11 +49,8 @@ const TodoItem = (props) => {
   };
 
   const handleOnBlurInput = (event) => {
-    let text = event.target.value;
     setEdit(false);
-    if (!text || !text.trim()) {
-      setItemText(item.title);
-    }
+    setItemText(item.title);
   };
 
   return (
@@ -65,6 +62,7 @@ const TodoItem = (props) => {
           onChange={onChangeItem}
           onKeyUp={handleKeyUpItem}
           onBlur={handleOnBlurInput}
+          autoFocus
         />
       )}
       {!isEdit && <p onDoubleClick={onDoubleClickItem}>{itemText}</p>}
