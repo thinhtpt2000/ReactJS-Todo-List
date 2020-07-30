@@ -44,6 +44,11 @@ const TodoItem = (props) => {
     }
   };
 
+  const handleOnBlurInput = (event) => {
+    setEdit(false);
+    setItemText(item.title);
+  }
+
   return (
     <div className={className}>
       <img src={urlImg} width="32" onClick={onCheckClick} alt="Check item" />
@@ -52,6 +57,7 @@ const TodoItem = (props) => {
           value={itemText}
           onChange={onChangeItem}
           onKeyUp={handleKeyUpItem}
+          onBlur={handleOnBlurInput}
         />
       )}
       {!isEdit && <p onDoubleClick={onDoubleClickItem}>{itemText}</p>}
