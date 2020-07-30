@@ -20,6 +20,10 @@
   padding: 2px 5px;
 }
 
+.FooterItem:hover {
+  cursor: pointer;
+}
+
 .FooterItem.active {
   border: 1px solid #bebebe;
 }
@@ -29,6 +33,7 @@
   text-decoration: underline;
   cursor: pointer;
 }
+
 .ClearCompleteBtn.hidden {
   visibility: hidden;
 }

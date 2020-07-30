@@ -18,6 +18,10 @@
   flex: 1;
 }
 
+.TodoItem > p:hover {
+  cursor: text;
+}
+
 .TodoItem > input {
   margin: 0 0 0 15px;
   flex: 1;
