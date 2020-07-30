@@ -1,8 +1,7 @@
 .App {
   width: 500px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 50px;
+  min-height: 240px;
+  margin: 50px auto;
   border: 1px solid #eee;
   font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
   font-weight: 300;
@@ -10,10 +9,16 @@
   color: #4d4d4d;
   background-color: #fff;
   border-radius: 20px;
-  padding: 20px;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 100px - 10px);
+  overflow: auto;
+  position: relative;
 }
 
 .App .Title {
+  margin-top: 20px;
   text-align: center;
   font-size: 48px;
   font-style: italic;
@@ -26,6 +31,10 @@
   display: flex;
   align-items: center;
   border-bottom: 1px solid #bebebe;
+  position: sticky;
+  top: 0px;
+  background-color: #fff;
+  z-index: 100;
 }
 
 .App .Header > input {
@@ -42,4 +51,15 @@
 
 .App .EmptyMessage {
   text-align: center;
+}
+
+.App .Container {
+  flex: 1;
+}
+
+.App .Footer {
+  position: sticky;
+  bottom: 0px;
+  background-color: #fff;
+  z-index: 10;
 }
